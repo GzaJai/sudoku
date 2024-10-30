@@ -72,20 +72,25 @@ class Tablero:
         sector = get_sector(value[0], value[1], self.table)
 
         for l in sector:
-            if int(value[2]) in l:
-                return False
+            for v in l:
+                if v == 'x':
+                    return True
+                if v[2] == value[2]:
+                    return False
         return True
         
     def set_value(self, value):
+        print(f'aca {value}')
         if self.check_in_lines(value) and self.check_in_sector(value):
+            value[3] = 1
             self.table[value[1]][value[0]] = value
         else:
+            value[3] = 0
             self.table[value[1]][value[0]] = value
         
     def handle_user_value(self, value):
     # el user va a cargar el value como una tupla (x,x,x)
     # se va a instanciar en Value y obtendremos el valor correspondiente, usando los checkers para determinar el ultimo valor del objeto Value
         inputed_value = Value(value).value
-        if self.check_in_lines(inputed_value) and self.check_in_sector(inputed_value):
-            self.set_value(inputed_value)
+        self.set_value(inputed_value)
 

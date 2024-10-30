@@ -23,3 +23,14 @@ tablero.print()
 # tablero.handle_user_value((2,6,6))
 # tablero.handle_user_value((8,8,6))
 tablero.print()
+
+while True:
+    value = list(input('Introduce el valor -> '))
+
+    value_tuple = (int(value[0]), int(value[2]), int(value[4]))
+
+    tablero.handle_user_value(value_tuple)
+    tablero.print()
+
+    if value == 'exit':
+        break
